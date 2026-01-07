@@ -110,10 +110,10 @@ export default function ChartHeader({
               <div className="text-[#d1d5db] border-l border-[#1f1f1f] pl-6">
                 <div className="flex gap-4 flex-wrap">
                   <div>
-                    <span className="text-[#9ca3af]">Volume:</span> <span className="text-white">{(volume / 1e6).toFixed(1)}M</span>
+                    <span className="text-[#9ca3af]">Volume:</span> <span className="text-white">{volume.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
                   </div>
                   <div>
-                    <span className="text-[#9ca3af]">Avg Vol:</span> <span className="text-white">{(avgVolume / 1e6).toFixed(1)}M</span>
+                    <span className="text-[#9ca3af]">Avg Vol:</span> <span className="text-white">{avgVolume.toLocaleString('en-US', { maximumFractionDigits: 0 })}</span>
                   </div>
                   <div>
                     <span className="text-[#9ca3af]">Volatility:</span> <span className="text-white">{volatility.toFixed(2)}%</span>

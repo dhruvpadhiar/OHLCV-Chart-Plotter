@@ -326,6 +326,11 @@ const ChartDisplay = forwardRef<any, ChartDisplayProps>(({ data, chartType, indi
     },
     responsive: true,
     maintainAspectRatio: false,
+    animation: {
+      animateRotate: true,
+      animateScale: true,
+      duration: 0,
+    },
     interaction: {
       mode: "index" as const,
       intersect: false,
@@ -372,7 +377,7 @@ const ChartDisplay = forwardRef<any, ChartDisplayProps>(({ data, chartType, indi
                 `High: $${candle.high.toFixed(2)}`,
                 `Low: $${candle.low.toFixed(2)}`,
                 `Close: $${candle.close.toFixed(2)} ${isPositive ? "+" : ""}${change.toFixed(2)} (${isPositive ? "+" : ""}${changePercent}%)`,
-                `Volume: ${(candle.volume / 1e6).toFixed(2)}M`,
+                `Volume: ${candle.volume.toLocaleString('en-US', { maximumFractionDigits: 0 })}`,
               ]
               
               // Add technical indicators if available
@@ -416,7 +421,8 @@ const ChartDisplay = forwardRef<any, ChartDisplayProps>(({ data, chartType, indi
             zoom: {
               wheel: {
                 enabled: true,
-                speed: 0.1,
+                speed: 0.15,
+                modifierKey: "ctrl" as const,
               },
               pinch: {
                 enabled: true,
@@ -426,7 +432,7 @@ const ChartDisplay = forwardRef<any, ChartDisplayProps>(({ data, chartType, indi
             pan: {
               enabled: true,
               mode: "xy" as const,
-              modifierKey: "ctrl" as const,
+              modifierKey: null,
             },
           }
         : undefined,
@@ -539,7 +545,7 @@ function VolumeChart({ data, labels }: { data: OHLCData[]; labels: string[] }) {
         callbacks: {
           label: (context: any) => {
             const volume = context.parsed.y
-            return `Volume: ${(volume / 1e6).toFixed(1)}M`
+            return `Volume: ${volume.toLocaleString('en-US', { maximumFractionDigits: 0 })}`
           },
         },
       },

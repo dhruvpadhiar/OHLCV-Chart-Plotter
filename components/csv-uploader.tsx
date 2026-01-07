@@ -13,7 +13,7 @@ interface CSVUploaderProps {
 export default function CSVUploader({ onFileUpload, isLoading }: CSVUploaderProps) {
   const [isDragging, setIsDragging] = useState(false)
   const canvasRef = useRef<HTMLCanvasElement>(null)
-  const animationFrameRef = useRef<number>()
+  const animationFrameRef = useRef<number | null>(null)
   const timeRef = useRef(0)
 
   const handleDragOver = (e: React.DragEvent) => {

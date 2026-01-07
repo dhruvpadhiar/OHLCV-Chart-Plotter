@@ -125,7 +125,7 @@ export function parseCSVData(csv: string): OHLCData[] {
       }
 
       data.push(ohlcData)
-      console.debug(`Parsed row ${i}: ${dateStr} O=${open} H=${high} L=${low} C=${close} V=${volume}`)
+      console.debug(`Parsed row ${i}: ${dateStr} O=${open} H=${high} L=${low} C=${close} V=${volume} RSI=${ohlcData.rsi14} MACD=${ohlcData.macd}/${ohlcData.macdSignal}/${ohlcData.macdHist}`)
     } catch (e) {
       console.warn(`Skipping invalid row ${i}: ${line}`, e)
     }
