@@ -327,9 +327,10 @@ const ChartDisplay = forwardRef<any, ChartDisplayProps>(({ data, chartType, indi
     responsive: true,
     maintainAspectRatio: false,
     animation: {
+      duration: 750,
+      easing: "easeInOutQuart" as const,
       animateRotate: true,
-      animateScale: true,
-      duration: 0,
+      animateScale: false,
     },
     interaction: {
       mode: "index" as const,
